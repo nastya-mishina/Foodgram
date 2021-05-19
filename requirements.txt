@@ -1,0 +1,17 @@
+asgiref~=3.2.7
+Django~=3.0.5
+pytz~=2019.3
+sqlparse~=0.3.1
+
+cffi~=1.14.2
+future~=0.18.2
+Pillow~=8.0.1
+pip~=21.0.1
+cryptography~=3.1
+py~=1.8.1
+psycopg2~=2.8.6
+colorama~=0.4.3
+Jinja2~=2.11.2
+setuptools~=47.1.0
+django-debug-toolbar~=3.1.1
+djangorestframework~=3.11.0

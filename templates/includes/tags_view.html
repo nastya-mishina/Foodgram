@@ -1,0 +1,17 @@
+<ul class="card__items">
+    {% for tag in recipe.tags.all %}
+        {% if tag.name == 'Завтрак' %}
+            <li class="card__item">
+                <span class="badge badge_style_orange">{{ tag.name }}</span>
+            </li>
+        {% elif tag.name == 'Обед' %}
+            <li class="card__item">
+                <span class="badge badge_style_green">{{ tag.name }}</span>
+            </li>
+        {% elif tag.name == 'Ужин' %}
+            <li class="card__item">
+                <span class="badge badge_style_purple">{{ tag.name }}</span>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Ошибка 400{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'pages/index.css' %}">
+{% endblock %}
+{% block header %}
+    {% if request.user.is_authenticated %}
+        {%include 'headerAuth.html' %}
+    {% else %}
+        {%include 'headerNotAuth.html' %}
+    {% endif %}
+{% endblock %}
+{% block content %}
+<div class="main__header">
+    <h1 class="main__title">Ошибка 400</h1>
+</div>
+<div class="card-list">
+    <div class="custom-center-block">
+            <p class="custom-text-block">Элемент<code>{{ path }}</code> не найдена</p>
+        <div class="custom-button-block">
+            <a href="{% url 'index' %}"><button class="button button_style_blue">Перейти на главную</button></a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
