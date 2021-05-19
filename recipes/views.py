@@ -69,7 +69,7 @@ def recipe_view(request, username: str, recipe_id: int):
 
 
 @login_required
-def recipe_edit(request, recipe_id):
+def recipe_edit(request, username, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     form = RecipeForm(
         request.POST or None,
@@ -90,7 +90,7 @@ def recipe_edit(request, recipe_id):
 
 
 @login_required
-def recipe_delete(request, recipe_id):
+def recipe_delete(request, username, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     recipe.delete()
     return redirect('index')
@@ -147,7 +147,7 @@ def favorite(request):
                                              'page': page, })
 
 
-def page_not_found(request):
+def page_not_found(request, exception):
     return render(
         request,
         "misc/404.html",
