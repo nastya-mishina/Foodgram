@@ -68,7 +68,8 @@ class Recipe(models.Model):
         related_name='ingredients_amounts'
     )
     tags = models.ManyToManyField(Tag)
-    time = models.PositiveIntegerField(help_text='Укажите время приготовления в минутах')
+    time = models.PositiveIntegerField(
+        help_text='Укажите время приготовления в минутах')
 
     class Meta:
         verbose_name = 'рецепт'

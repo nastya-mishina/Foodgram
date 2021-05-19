@@ -18,7 +18,8 @@ def favorite_add(request):
 @login_required
 def favorite_delete(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
-    favorite_recipe = get_object_or_404(Favorite, user=request.user, recipe=recipe)
+    favorite_recipe = get_object_or_404(Favorite, user=request.user,
+                                        recipe=recipe)
     favorite_recipe.delete()
     return JsonResponse({'success': True})
 

@@ -16,9 +16,12 @@ urlpatterns = [
     path('auth/', include('users.urls')),
     path('auth/', include('django.contrib.auth.urls')),
     path("api/v1/", include('api.urls')),
-    path("about-author/", views.flatpage, {"url": "/about-author/"}, name="author"),
-    path("about-spec/", views.flatpage, {"url": "/about-spec/"}, name="spec"),
-    path('food-assistant/', views.flatpage, {"url": "/food-assistant/"}, name="food-assistant"),
+    path("about-author/", views.flatpage, {"url": "/about-author/"},
+         name="author"),
+    path("about-spec/", views.flatpage, {"url": "/about-spec/"},
+         name="spec"),
+    path('food-assistant/', views.flatpage, {"url": "/food-assistant/"},
+         name="food-assistant"),
     path("404/", page_not_found, name="page_not_found"),
     path("500/", server_error, name="server_error"),
     path('', include('recipes.urls')),
@@ -29,8 +32,10 @@ if settings.DEBUG:
     import debug_toolbar
 
     urlpatterns += (path("__debug__/", include(debug_toolbar.urls)),)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
 
 if not settings.DEBUG:
     urlpatterns += [

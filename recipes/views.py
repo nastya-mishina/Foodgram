@@ -1,8 +1,8 @@
 from django.db.models import Sum
 from django.http import HttpResponse
 
-from .models import Recipe, Ingredient, User, Follow, ShoppingList, Favorite, Tag, RecipeIngredient
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from .models import Recipe, User, Follow, ShoppingList, RecipeIngredient
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from .forms import RecipeForm
@@ -45,9 +45,10 @@ def profile(request, username):
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
 
-    return render(request, 'profile.html', {'paginator': paginator,
-                                            'page': page, 'author': author, 'following': following,
-                                            'follow': follow, 'follower': follower})
+    return render(request, 'profile.html', {
+        'paginator': paginator,
+        'page': page, 'author': author, 'following': following,
+        'follow': follow, 'follower': follower})
 
 
 def recipe_view(request, username: str, recipe_id: int):
@@ -60,10 +61,11 @@ def recipe_view(request, username: str, recipe_id: int):
     form = RecipeForm()
     ingredients = recipe.ingredients.all()
     count_recipes = author.recipes.count
-    return render(request, 'recipe_one.html', {'recipe': recipe, 'author': author,
-                                               'follow': follow, 'following': following, 'follower': follower,
-                                               'form': form, 'ingredients': ingredients,
-                                               'count_recipes': count_recipes})
+    return render(request, 'recipe_one.html', {
+        'recipe': recipe, 'author': author,
+        'follow': follow, 'following': following, 'follower': follower,
+        'form': form, 'ingredients': ingredients,
+        'count_recipes': count_recipes})
 
 
 @login_required
@@ -114,8 +116,10 @@ def shopping_list(request):
 
 @login_required
 def download_shopping_list(request):
-    ingredients = Recipe.objects.prefetch_related('ingredients', 'recipe_ingredients').filter(
-        recipe_shopping_list__user=request.user).order_by('ingredients__title').values(
+    ingredients = Recipe.objects.prefetch_related(
+        'ingredients', 'recipe_ingredients').filter(
+        recipe_shopping_list__user=request.user).order_by(
+        'ingredients__title').values(
         'ingredients__title', 'ingredients__units').annotate(
         count=Sum('recipe_ingredients__count'))
     ingredient_txt = [
@@ -139,7 +143,8 @@ def favorite(request):
     paginator = Paginator(recipes, 6)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
-    return render(request, 'favorite.html', {'paginator': paginator, 'page': page, })
+    return render(request, 'favorite.html', {'paginator': paginator,
+                                             'page': page, })
 
 
 def page_not_found(request):

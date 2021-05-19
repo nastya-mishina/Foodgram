@@ -16,7 +16,8 @@ def form_valid(form, request, ingredients):
     recipe.author = request.user
     recipe.save()
     for title, count in ingredients.items():
-        ingredient, _ = Ingredient.objects.get_or_create(title=title, defaults={'units': 'нет'})
+        ingredient, _ = Ingredient.objects.get_or_create(
+            title=title, defaults={'units': 'нет'})
         recipe_ingredient = RecipeIngredient(
             ingredient=ingredient,
             count=count,
