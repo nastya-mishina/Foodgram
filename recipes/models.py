@@ -5,10 +5,17 @@ User = get_user_model()
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True, max_length=100, blank=True, null=True)
-    color = models.CharField(max_length=15, blank=True, null=True)
-    style = models.CharField(max_length=20, unique=True, blank=True, null=True)
+    name = models.CharField(
+        max_length=200, verbose_name='Название тега')
+    slug = models.SlugField(
+        unique=True, max_length=100,
+        blank=True, null=True, verbose_name='Слаг')
+    color = models.CharField(
+        max_length=15, blank=True,
+        null=True, verbose_name='Цвет')
+    style = models.CharField(
+        max_length=20, unique=True,
+        blank=True, null=True, verbose_name='Стиль')
 
     class Meta:
         ordering = ['id']
@@ -65,10 +72,12 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(
         Ingredient,
         through='RecipeIngredient',
-        related_name='ingredients_amounts'
+        related_name='ingredients_amounts',
+        verbose_name='Ингредиенты'
     )
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, verbose_name='Теги')
     time = models.PositiveIntegerField(
+        verbose_name='Время',
         help_text='Укажите время приготовления в минутах')
 
     class Meta:
@@ -83,10 +92,12 @@ class Recipe(models.Model):
 class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(Recipe,
                                on_delete=models.CASCADE,
-                               related_name='recipe_ingredients')
+                               related_name='recipe_ingredients',
+                               verbose_name='Рецепт')
     ingredient = models.ForeignKey(Ingredient,
                                    on_delete=models.CASCADE,
-                                   related_name='recipes')
+                                   related_name='recipes',
+                                   verbose_name='Ингредиент')
     count = models.PositiveIntegerField()
 
     class Meta:
@@ -119,7 +130,8 @@ class ShoppingList(models.Model):
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name='recipe_shopping_list')
+        related_name='recipe_shopping_list',
+        verbose_name='Рецепт')
 
     class Meta:
         verbose_name = 'Список покупок'
@@ -134,7 +146,8 @@ class Favorite(models.Model):
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name='recipe_favorite_list')
+        related_name='recipe_favorite_list',
+        verbose_name='Рецепт')
 
     class Meta:
         verbose_name = 'Избранное'

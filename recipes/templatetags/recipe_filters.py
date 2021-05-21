@@ -1,7 +1,7 @@
 import django_filters
 from django import template
 
-from recipes.models import Favorite, Follow, ShoppingList, Ingredient
+from recipes.models import Favorite, Follow, Ingredient, ShoppingList
 
 register = template.Library()
 

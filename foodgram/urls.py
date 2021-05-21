@@ -1,11 +1,12 @@
+from django.conf import settings
+from django.conf.urls import url
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.flatpages import views
-from django.urls import path, include
-from recipes.views import page_not_found, server_error
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import include, path
 from django.views.static import serve
-from django.conf.urls import url
+
+from recipes.views import page_not_found, server_error
 
 handler404 = "recipes.views.page_not_found"  # noqa
 handler500 = "recipes.views.server_error"  # noqa

@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from rest_framework.utils import json
 
-from recipes.models import Recipe, Ingredient, Follow, Favorite, ShoppingList
+from recipes.models import Favorite, Follow, Ingredient, Recipe, ShoppingList
 
 
 @login_required

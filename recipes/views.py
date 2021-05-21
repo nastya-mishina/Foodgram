@@ -1,12 +1,14 @@
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.db.models import Sum
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 
-from .models import Recipe, User, Follow, ShoppingList, RecipeIngredient
-from django.shortcuts import render, get_object_or_404, redirect
-from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
+from foodgram.settings import ELEMENTS_FOLLOW, ELEMENTS_PAGE
+
 from .forms import RecipeForm
-from .utils import get_ingredients, form_valid
+from .models import Follow, Recipe, RecipeIngredient, ShoppingList, User
+from .utils import form_valid, get_ingredients
 
 
 def index(request):
@@ -14,7 +16,7 @@ def index(request):
     tags = request.GET.getlist('tag')
     if tags:
         recipe_list = recipe_list.filter(tags__style__in=tags).distinct().all()
-    paginator = Paginator(recipe_list, 6)
+    paginator = Paginator(recipe_list, ELEMENTS_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     return render(request, 'index.html', {'page': page,
@@ -41,7 +43,7 @@ def profile(request, username):
     following = author.following.count()
     follower = author.follower.count()
     recipes = author.recipes.all()
-    paginator = Paginator(recipes, 6)
+    paginator = Paginator(recipes, ELEMENTS_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
 
@@ -99,7 +101,7 @@ def recipe_delete(request, username, recipe_id):
 @login_required
 def follow_index(request):
     follows = Follow.objects.filter(user=request.user)
-    paginator = Paginator(follows, 4)
+    paginator = Paginator(follows, ELEMENTS_FOLLOW)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     return render(request, 'myFollow.html', {'page': page})
@@ -140,7 +142,7 @@ def favorite(request):
     tags = request.GET.getlist('tag')
     if tags:
         recipes = recipes.filter(tags__style__in=tags).distinct().all()
-    paginator = Paginator(recipes, 6)
+    paginator = Paginator(recipes, ELEMENTS_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     return render(request, 'favorite.html', {'paginator': paginator,
