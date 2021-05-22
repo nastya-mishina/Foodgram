@@ -56,6 +56,8 @@ jobs:
           script: |
             sudo docker pull mishinaanast/foodgram.praktikum:latest
             sudo docker stop $(sudo docker ps -a -q)
+            touch .env
+            echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
             sudo docker-compose up --build -d
             sudo docker-compose exec -T web python manage.py makemigrations --no-input
             sudo docker-compose exec -T web python manage.py migrate --no-input
