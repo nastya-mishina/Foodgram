@@ -10,6 +10,8 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
+    'recipes',
+    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -20,8 +22,6 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     "sorl.thumbnail",
     'rest_framework',
-    'recipes',
-    'users',
     'api',
     'about',
 ]
@@ -60,26 +60,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR,"db.sqlite3"),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': os.environ.get(
-                'DB_ENGINE', default='django.db.backends.postgresql'
-            ),
-            'NAME': os.environ.get('DB_NAME', default='postgres'),
-            'USER': os.environ.get('POSTGRES_USER', default='postgres'),
-            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', default='postgres'),
-            'HOST': os.environ.get('DB_HOST', default='db'),
-            'PORT': os.environ.get('DB_PORT', default=5432),
-        }
-    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -110,10 +96,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles'), ]
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
