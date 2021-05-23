@@ -32,7 +32,7 @@ class Ingredient(models.Model):
         verbose_name='Название',
         help_text='Введите название ингредиента'
     )
-    units = models.CharField(max_length=100)
+    dimension = models.CharField(max_length=100)
 
     class Meta:
         ordering = ('title',)

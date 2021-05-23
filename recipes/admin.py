@@ -6,7 +6,7 @@ from .models import (
 
 
 class IngredientAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'title', 'units')
+    list_display = ('pk', 'title', 'dimension')
     list_filter = ('title',)
     empty_value_display = '-пусто-'
 
