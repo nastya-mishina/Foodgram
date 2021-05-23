@@ -13,16 +13,11 @@ handler500 = "recipes.views.server_error"  # noqa
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('about/', include('about.urls', namespace='about')),
     path('about/', include('django.contrib.flatpages.urls')),
     path('auth/', include('users.urls')),
     path('auth/', include('django.contrib.auth.urls')),
     path("api/v1/", include('api.urls')),
-    path("about-author/", views.flatpage, {"url": "/about-author/"},
-         name="author"),
-    path("about-spec/", views.flatpage, {"url": "/about-spec/"},
-         name="spec"),
-    path('food-assistant/', views.flatpage, {"url": "/food-assistant/"},
-         name="food-assistant"),
     path("404/", page_not_found, name="page_not_found"),
     path("500/", server_error, name="server_error"),
     path('', include('recipes.urls')),

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Технологии
+{% endblock %}
+{% block static %}
+  <link rel="stylesheet" href="{% static 'pages/index.css' %}">
+  <link rel="stylesheet" href="{% static 'pages/single.css' %}">
+{% endblock static %}
+
+{% block content %}
+  <main class="main container">
+    <h1 class="main__title">
+      Используемые технологии
+    </h1>
+
+    <p class="tags__label">
+      Что мне помогло в этом нелегком пути
+    </p>
+
+    <ul>
+      <li class="tags__label" style="padding:2px"><span style="color: blue">PostgreSQL 12</span></li>
+      <li class="tags__label" style="padding:2px"><span style="color: blue">Django 3.0</span></li>
+      <li class="tags__label" style="padding:2px"><span style="color: blue">Django REST framework</span></li>
+
+      <p class="tags__label">
+        а так же
+      </p>
+
+      <li class="tags__label" style="padding:2px">
+        <span style="color: blue" title="Docker">Docker</span>,
+        <span style="color: blue" title="Gunicorn">Gunicorn</span> и
+        <span style="color: blue" title="Nginx">Nginx</span>
+      </li>
+    </ul>
+  </main>
+{% endblock content %}
