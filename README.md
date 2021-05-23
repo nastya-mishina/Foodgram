@@ -1,7 +1,8 @@
 # Grocery assistant
-###Description:
+### Description:
 This is an online service where users can publish recipes, subscribe to publications of other users, add recipes they like to the favorites list, and download a summary list of products needed to prepare one or more selected dishes before going to the store.
 ### Website address:
+http://178.154.214.43/
 
 ## Technologies:
 - Python 3.8.5
