@@ -12,7 +12,10 @@
 {% csrf_token %}
     <main class="main container">
         <div class="single-card" data-id="{{ recipe.id }}" data-author="{{ recipe.author.id }}">
-            <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="single-card__image">
+            {% load thumbnail %}
+            {% thumbnail item.recipe.image "900x500" crop="center" upscale=True as im %}
+                <img src="{{ im.url }}" alt="{{ item.recipe.title }}" class="recipe__image recipe__image_big">
+            {% endthumbnail %}
             <div class="single-card__info">
                 <div class="single-card__header-info">
                     <h1 class="single-card__title">{{ recipe.title }}</h1>
