@@ -56,7 +56,7 @@ class Recipe(models.Model):
         help_text='Название рецепта'
     )
     image = models.ImageField(
-        upload_to='/recipes/',
+        upload_to='recipes/',
         verbose_name='Изображение',
         help_text='Выберите файл'
     )
