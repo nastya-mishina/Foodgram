@@ -2,6 +2,7 @@
 {% load user_filters %}
 <div class="card" data-id="{{ recipe.id }}">
     <a href="{% url 'recipe_view' username=recipe.author.username recipe_id=recipe.id %}" class="link" target="_blank">
+
         {% load thumbnail %}
         {% thumbnail recipe.image "364x240" crop="center" upscale=True as im %}
             <img src="{{ im.url }}" alt="{{ recipe.title }}" class="single-card__image">
