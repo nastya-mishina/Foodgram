@@ -4,7 +4,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -58,16 +58,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('DB_ENGINE', "django.db.backends.postgresql"),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.environ.get(
+                'DB_ENGINE', default='django.db.backends.postgresql'
+            ),
+            'NAME': os.environ.get('DB_NAME', default='postgres'),
+            'USER': os.environ.get('POSTGRES_USER', default='postgres'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', default='postgres'),
+            'HOST': os.environ.get('DB_HOST', default='db'),
+            'PORT': os.environ.get('DB_PORT', default=5432),
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -97,8 +107,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    BASE_DIR, 'staticfiles',
-]
+    os.path.join(BASE_DIR, 'staticfiles'), ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = '/auth/login/'
