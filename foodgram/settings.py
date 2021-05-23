@@ -104,11 +104,13 @@ LOGOUT_REDIRECT_URL = 'index'
 
 SITE_ID = 1
 
-RECIPIENTS_EMAIL = ['anastasia.petrukhova@gmail.com']
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'anastasia.petrukhova@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'anastasia.petrukhova@gmail.com'
-
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 ELEMENTS_PAGE = 6
 ELEMENTS_FOLLOW = 4
