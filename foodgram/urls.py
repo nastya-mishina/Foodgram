@@ -36,6 +36,6 @@ if not settings.DEBUG:
     urlpatterns += [
         url(r'^media/(?P<path>.*)$', serve,
             {'document_root': settings.MEDIA_ROOT}),
-        url(r'^static/(?P<path>.*)$', serve,
+        url(r'^staticfiles/(?P<path>.*)$', serve,
             {'document_root': settings.STATIC_ROOT}),
     ]

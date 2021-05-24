@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 {% load user_filters %}
+{% load static %}
 {% block title %} Создание рецепта {% endblock %}
 
-{% load static %}
-{% block static %}
-    <link rel="stylesheet" href="{% static 'pages/form.css' %}">
-{% endblock %}
+    <link rel="stylesheet" href=“/static/pages/form.css”>
 
 {% block content %}
 <main class="main container">
@@ -131,9 +129,9 @@
         </form>
     </div>
 </main>
-<script src="{% static 'js/config/config.js' %} "></script>
-<script src="{% static 'js/components/Header.js' %} "></script>
-<script src="{% static 'js/utils/debouncing.js' %} "></script>
-<script src="{% static 'js/api/Api.js' %} "></script>
-<script src="{% static 'js/formRecipe.js' %}"></script>
+<script src="/static/js/config/config.js"></script>
+<script src="/static/js/components/Header.js"></script>
+<script src="/static 'js/utils/debouncing.js"></script>
+<script src="/static 'js/api/Api.js"></script>
+<script src="/static 'js/formRecipe.js"></script>
 {% endblock %}
