@@ -13,7 +13,7 @@ def follow_add(request):
     author = get_object_or_404(User, pk=author_id)
     if request.user != author:
         if Follow.objects.filter(user=request.user).filter(
-            author=author).exists() is False:
+                author=author).exists() is False:
             Follow.objects.create(user=request.user, author=author)
             return JsonResponse({"success": "ok"})
 

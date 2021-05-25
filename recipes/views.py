@@ -7,7 +7,6 @@ from .constants import ELEMENTS_PAGE
 from .forms import RecipeForm
 from .models import (
     Follow,
-    Ingredient,
     Ingredients_recipe,
     Recipe,
     ShoppingList,

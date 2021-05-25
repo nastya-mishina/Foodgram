@@ -43,7 +43,8 @@ def form_valid(form, request, ingredients):
     recipe.author = request.user
     recipe.save()
     for title, units in ingredients.items():
-        ingredient, _ = Ingredient.objects.get_or_create(title=title, defaults={'dimension': 'нет'})
+        ingredient, _ = Ingredient.objects.get_or_create(
+            title=title, defaults={'dimension': 'нет'})
         recipe_ingredient = Ingredients_recipe(
             ingredient=ingredient,
             units=units,
