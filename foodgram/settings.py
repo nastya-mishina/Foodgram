@@ -17,12 +17,9 @@ SECRET_KEY = (
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "84.252.134.143",
+    "178.154.214.43",
     'localhost',
     '127.0.0.1',
-    'wwww.foodgram-food.ga',
-    'foodgram-food.ga',
-    'web',
 ]
 
 APPEND_SLASH = False
