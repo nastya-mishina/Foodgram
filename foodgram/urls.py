@@ -12,7 +12,8 @@ flatpages_urls = [
     path('flatpages/', include('django.contrib.flatpages.urls')),
     path('author/', views.flatpage, {'url': '/author/'}, name='about_author'),
     path('tech/', views.flatpage, {'url': '/tech/'}, name='about_tech'),
-    path('site-info/', views.flatpage, {'url': '/site-info/'}, name='site_info'),
+    path('site-info/', views.flatpage, {'url': '/site-info/'},
+         name='site_info'),
 ]
 
 urlpatterns = [
