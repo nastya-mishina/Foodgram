@@ -7,9 +7,6 @@ User = get_user_model()
 class Tag(models.Model):
     name = models.CharField(
         max_length=200, verbose_name='Название тега')
-    slug = models.SlugField(
-        unique=True, max_length=100,
-        blank=True, null=True, verbose_name='Слаг')
     color = models.CharField(
         max_length=15, blank=True,
         null=True, verbose_name='Цвет')
@@ -40,7 +37,7 @@ class Ingredient(models.Model):
         verbose_name_plural = 'Ингредиенты'
 
     def __str__(self):
-        return f'{self.title}, {self.units}'
+        return f'{self.title}, {self.dimension}'
 
 
 class Recipe(models.Model):
