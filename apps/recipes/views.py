@@ -147,7 +147,7 @@ class PurchaseView(LoginRequiredMixin, ListView):
 
 @login_required
 def shopping_list_download(request):
-    result = shopping_list_ingredients(request)
+    result = shopping_list_ingredients(request.user)
     response = HttpResponse(result, content_type='text/plain')
     response['Content-Disposition'] = 'attachment; filename = download.txt'
     return response
