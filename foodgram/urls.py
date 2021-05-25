@@ -9,7 +9,7 @@ handler500 = 'foodgram.views.server_error'  # noqa
 
 
 flatpages_urls = [
-    path('pages/', include('django.contrib.flatpages.urls')),
+    path('flatpages/', include('django.contrib.flatpages.urls')),
     path('author/', views.flatpage, {'url': '/author/'}, name='about_author'),
     path('tech/', views.flatpage, {'url': '/tech/'}, name='about_tech'),
 ]
