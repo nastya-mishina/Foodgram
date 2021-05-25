@@ -20,6 +20,7 @@ ALLOWED_HOSTS = [
     "178.154.214.43",
     'localhost',
     '127.0.0.1',
+    'web'
 ]
 
 APPEND_SLASH = False
