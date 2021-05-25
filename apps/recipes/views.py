@@ -24,7 +24,7 @@ User = get_user_model()
 class IndexView(TagContextMixin, BaseFilterView, ListView):
     model = Recipe
     template_name = 'recipes/index.html'
-    paginate_by = settings.PAGINATE_BY
+    paginate_by = settings.ELEMENTS_PAGE
     filterset_class = TaggedRecipeFilterSet
 
     def get_queryset(self):
@@ -52,7 +52,7 @@ class IndexView(TagContextMixin, BaseFilterView, ListView):
 class FollowView(LoginRequiredMixin, ListView):
     model = User
     template_name = 'recipes/follow.html'
-    paginate_by = settings.PAGINATE_BY
+    paginate_by = settings.ELEMENTS_PAGE
     queryset = User.objects.all()
 
     def get_queryset(self):
@@ -64,7 +64,7 @@ class FavoriteView(TagContextMixin, LoginRequiredMixin,
                    BaseFilterView, ListView):
     model = Recipe
     template_name = 'recipes/favorites.html'
-    paginate_by = settings.PAGINATE_BY
+    paginate_by = settings.ELEMENTS_PAGE
     filterset_class = TaggedRecipeFilterSet
     queryset = Recipe.objects.all()
 
@@ -76,7 +76,7 @@ class FavoriteView(TagContextMixin, LoginRequiredMixin,
 class ProfileView(TagContextMixin, BaseFilterView, ListView):
     model = Recipe
     template_name = 'recipes/profile.html'
-    paginate_by = settings.PAGINATE_BY
+    paginate_by = settings.ELEMENTS_PAGE
     filterset_class = TaggedRecipeFilterSet
     queryset = Recipe.objects.all()
 
