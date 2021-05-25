@@ -8,7 +8,7 @@ services:
     env_file:
       - ./.env
   web:
-    image: romanov5820/foodgram:latest
+    image: mishinaanast/foodgram.praktikum:latest
     restart: always
     volumes:
       - static_value:/code/static/
