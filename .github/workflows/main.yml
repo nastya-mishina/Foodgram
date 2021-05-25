@@ -56,7 +56,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           stack_file_name: docker-compose.yaml
           script: |
-            cd foodgram-project
+            cd Foodgram
             sudo docker pull mishinaanast/foodgram.praktikum
             sudo docker-compose stop
             sudo docker-compose rm web
