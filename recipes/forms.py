@@ -1,13 +1,10 @@
-from django import forms
-from django.forms import CheckboxSelectMultiple
+from django.forms import CheckboxSelectMultiple, ModelForm
 
-from recipes.models import Recipe
+from .models import Recipe
 
 
-class RecipeForm(forms.ModelForm):
+class RecipeForm(ModelForm):
     class Meta:
         model = Recipe
-        fields = ('title', 'tags', 'time', 'description', 'image')
-        widgets = {
-            'tags': CheckboxSelectMultiple(
-                attrs={'class': 'tags__checkbox'}), }
+        fields = ['title', 'tags', 'cooking_time', 'text', 'image']
+        widgets = {'tags': CheckboxSelectMultiple()}

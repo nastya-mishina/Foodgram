@@ -106,7 +106,6 @@ celerybeat.pid
 .venv
 env/
 venv/
-sent_emails/
 ENV/
 env.bak/
 venv.bak/
@@ -128,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#static/
+media/
+
+.vscode/
+
+recipes/static/admin/

@@ -7,5 +7,5 @@ app_name = 'about'
 urlpatterns = [
     path('author/', views.AboutAuthorView.as_view(), name='author'),
     path('tech/', views.AboutTechView.as_view(), name='tech'),
-    path('site_info/', views.AboutSiteView.as_view(), name='site_info'),
+    path('site_info/', views.AboutSiteView.as_view(), name='site_info')
 ]
