@@ -1,7 +1,3 @@
-const container = document.querySelector('.card-list');
-const counterId = document.querySelector('#counter');
-const header = new Header(counterId);
-
 class Header {
     constructor(counter) {
         this.counter = counter;
