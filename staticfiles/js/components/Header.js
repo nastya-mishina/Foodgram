@@ -2,17 +2,17 @@ class Header {
     constructor(counter) {
         this.counter = counter;
         this.api = api;
-        this.counterNum = this.counter.textContent;
+        this.counterId = this.counterId.textContent;
         this.plusCounter = this.plusCounter.bind(this);
         this.minusCounter = this.minusCounter.bind(this);
     }
 
     plusCounter  ()  {
-        this.counterNum = ++this.counterNum;
-        this.counter.textContent = this.counterNum;
+        this.counterId = ++this.counterId;
+        this.counterId.textContent = this.counterId;
     }
     minusCounter ()  {
-        this.counterNum = --this.counterNum;
-        this.counter.textContent = this.counterNum;
+        this.counterId = --this.counterId;
+        this.counterId.textContent = this.counterId;
     }
 }
