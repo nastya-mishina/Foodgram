@@ -44,7 +44,7 @@ http://178.154.214.43/
 
 ### Application launch:
 - Collect image:
-```$ docker build -t yamdb .```
+```$ docker build -t foodgram .```
 - Start container:
 ```$ docker run -it -p 8000:8000 yamdb```
 - Create a file `````.env````` in the root directory, add data there to connect to the database.
@@ -65,8 +65,8 @@ http://178.154.214.43/
 - Collect statics:
 ```$ docker-compose exec web python manage.py collectstatic --no-input```
 - Create an image with the desired name and tag:
-```$ docker build -t mishinaanast/yamdb_praktikum:v2.11.1989 .```
+```$ docker build -t mishinaanast/foodgram.praktikum .```
 - We log in through the console:
 ```$ winpty docker login```
 - Uploading the image to DockerHub:
-```$  docker push mishinaanast/yamdb_praktikum:v2.11.1989```
+```$  docker push mishinaanast/foodgram.praktikum```
