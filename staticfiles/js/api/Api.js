@@ -116,8 +116,8 @@ class Api {
             return Promise.reject(e.statusText)
         })
   }
-    getIngredients  (text)  {
-        return fetch(apiUrl + `api/v1/ingredients/?query=${text}`, {
+    getIngredients  (textContent)  {
+        return fetch(apiUrl + `api/v1/ingredients/?query=${textContent}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value
