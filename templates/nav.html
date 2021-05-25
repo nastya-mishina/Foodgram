@@ -7,7 +7,12 @@
             <li class="nav__item {% if url == 'follow' %} nav__item_active {% endif %}"><a href="{% url 'follow' %}" class="nav__link link">Мои подписки</a></li>
             <li class="nav__item {% if url == 'recipe_new' %} nav__item_active {% endif %}"><a href="{% url 'recipe_new' %}" class="nav__link link">Создать рецепт</a></li>
             <li class="nav__item {% if url == 'favorite' %} nav__item_active {% endif %}"><a href="{% url 'favorite' %}" class="nav__link link">Избранное</a></li>
-            <li class="nav__item {% if url == 'shopping_list' %} nav__item_active {% endif %}"><a href="{% url 'shopping_list' %}" class="nav__link link">Список покупок</a> <span class="badge badge_style_blue nav__badge" id="counter">{{ user.buyer.count }}</span></li>
+            <li class="nav__item {% if url == 'shopping_list' %} nav__item_active {% endif %}">
+                <a href="{% url 'shopping_list' %}" class="nav__link link">Список покупок</a>
+                {% if user.buyer.count > 0 %}
+                    <span class="badge badge_style_blue nav__badge" id="counter">{{ user.buyer.count }}</span>
+                {% endif %}
+            </li>
         </ul>
         <ul class="nav__items list">
             <li class="nav__item {% if url == 'password_change' %} nav__item_active {% endif %}"><a href="{% url 'password_change' %}" class="nav__link link">Изменить пароль</a></li>
@@ -16,10 +21,6 @@
         {% else %}
         <ul class="nav__items list">
             <li class="nav__item {% if url == 'index' %} nav__item_active {% endif %}"><a href="{% url 'index' %}" class="nav__link link">Рецепты</a></li>
-            <li class="nav__item nav__item_disabled"><a href="{% url 'follow' %}" class="nav__link link">Мои подписки</a></li>
-            <li class="nav__item nav__item_disabled"><a href="{% url 'recipe_new' %}" class="nav__link link">Создать рецепт</a></li>
-            <li class="nav__item nav__item_disabled"><a href="{% url 'favorite' %}" class="nav__link link">Избранное</a></li>
-            <li class="nav__item nav__item_disabled"><a href="{% url 'shopping_list' %}" class="nav__link link">Список покупок</a> <span class="badge badge_style_blue nav__badge" id="counter">{{ user.buyer.count }}</span></li>
         </ul>
         <ul class="nav__items list">
             <li class="nav__item {% if url == 'login' %} nav__item_active {% endif %}"><a href="{% url 'login' %}" class="nav__link link">Войти</a></li>
