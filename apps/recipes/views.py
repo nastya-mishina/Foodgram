@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Exists, OuterRef
-from django.http import FileResponse
+from django.http import FileResponse, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
@@ -16,7 +16,7 @@ from .forms import RecipeForm
 from .mixins import TagContextMixin
 from .models import Favorite, Purchase, Recipe
 from .permissions import AdminAuthorPermission
-from .service import generate_pdf
+from .service import shopping_list_ingredients
 
 User = get_user_model()
 
@@ -145,15 +145,12 @@ class PurchaseView(LoginRequiredMixin, ListView):
             in_purchases__user=self.request.user)
 
 
-class DownloadPurchasesListView(View):
-    def get(self, request, *args, **kwargs):
-        pdf = generate_pdf(request.user)
-
-        return FileResponse(
-            pdf,
-            as_attachment=True,
-            filename='purchases.pdf',
-        )
+@login_required
+def shopping_list_download(request):
+    result = shopping_list_ingredients(request)
+    response = HttpResponse(result, content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename = download.txt'
+    return response
 
 
 @login_required

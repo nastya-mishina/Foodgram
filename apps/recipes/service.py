@@ -1,22 +1,6 @@
-import io
-import os
-
-from django.db.models import Sum
 from django.shortcuts import get_object_or_404
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.pdfgen.canvas import Canvas
 
-from .models import Ingredient, Recipe, RecipeIngredient
-
-X_COORDINATE = 50
-Y_COORDINATE_TITLE = 50
-FONT_SIZE = 18
-Y_COORDINATE_TEXT = 130
-SIZE_DOWN_TITLE = 25
-SIZE_DOWN_TEXT = 44
-FONT_SIZE_TEXT = 12
-FONT = "GOST_Common"
+from .models import Ingredient, Recipe, ShoppingList
 
 
 def add_ingredients_to_recipe(recipe, ingredients):
@@ -35,52 +19,18 @@ def add_ingredients_to_recipe(recipe, ingredients):
     )
 
 
-pdfmetrics.registerFont(
-    TTFont(
-        "GOST_Common",
-        os.path.join("font/GOST_Common.ttf"),
-    )
-)
-
-
-def generate_pdf(user):
-    buffer = io.BytesIO()
-    canvas = Canvas(buffer, bottomup=0)
-
-    title = "Список покупок"
-    canvas.setTitle(title)
-
-    canvas.setFont(FONT, FONT_SIZE)
-    canvas.drawString(X_COORDINATE, Y_COORDINATE_TITLE, title)
-
-    canvas.setFont(FONT, FONT_SIZE)
-    canvas.drawString(
-        X_COORDINATE, Y_COORDINATE_TITLE + SIZE_DOWN_TITLE, "Продукты:"
-    )
-    y_coordinate = 130
-    canvas.setFont(FONT, FONT_SIZE_TEXT)
-
-    ingredients = (
-        RecipeIngredient.objects.filter(
-            recipe__in_purchases__user=user,
-        )
-        .values(
-            "ingredient__title",
-            "ingredient__dimension",
-        )
-        .annotate(quantity=Sum("quantity"))
-    )
-    for ingredient in ingredients:
-        line = "{0} {1} {2}".format(
-            ingredient["ingredient__title"],
-            ingredient["quantity"],
-            ingredient["ingredient__dimension"],
-        )
-        canvas.drawString(X_COORDINATE, y_coordinate, line)
-        y_coordinate += SIZE_DOWN_TEXT
-
-    canvas.showPage()
-    canvas.save()
-    buffer.seek(0)
-
-    return buffer
+def shopping_list_ingredients(request):
+    shopping_list = ShoppingList.objects.filter(user=request.user).all()
+    ingredients = {}
+    for item in shopping_list:
+        for x in item.recipe.ingredients_recipe_set.all():
+            name = f'{x.ingredient.title} ({x.ingredient.dimension})'
+            units = x.units
+            if name in ingredients.keys():
+                ingredients[name] += units
+            else:
+                ingredients[name] = units
+    download = []
+    for key, units in ingredients.items():
+        download.append(f'{key} - {units} \n')
+    return download
