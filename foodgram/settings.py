@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 AUTH_USER_MODEL = "users.User"
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', '61xf+#@+vqi&8)=kjy8ub%aym^^rp2(4e3g0$*0uil)g4#f-7#')
 
 DEBUG = False
 
