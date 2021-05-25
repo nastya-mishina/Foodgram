@@ -12,7 +12,7 @@ urlpatterns = [
     path('purchases/', views.PurchaseView.as_view(), name='purchases'),
     path(
         'purchases/download/',
-        views.DownloadPurchasesListView.as_view(),
+        views.shopping_list_download,
         name='purchases_download',
     ),
     path('<str:username>/', views.ProfileView.as_view(), name='profile'),
