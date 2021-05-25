@@ -40,7 +40,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: romanov5820/foodgram:latest
+          tags: mishinaanast/foodgram.praktikum:latest
           
           
   deploy:
@@ -57,7 +57,7 @@ jobs:
           stack_file_name: docker-compose.yaml
           script: |
             cd foodgram-project
-            sudo docker pull romanov5820/foodgram
+            sudo docker pull mishinaanast/foodgram.praktikum
             sudo docker-compose stop
             sudo docker-compose rm web
             touch .env 
@@ -70,8 +70,7 @@ jobs:
             echo EMAIL_HOST=${{ secrets.EMAIL_HOST }} >> .env
             echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env
             echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env
-            sudo docker-compose up -d 
-  
+            sudo docker-compose up -d
 
   send_message:
     runs-on: ubuntu-latest
