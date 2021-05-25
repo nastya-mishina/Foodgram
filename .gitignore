@@ -102,7 +102,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -128,9 +127,23 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#static/
-media/
+# Папки, создаваемые средой разработки
+.idea
+.DS_Store
+.AppleDouble
+.LSOverride
+
+*.sublime-project
+*.sublime-workspace
 
 .vscode/
+*.code-workspace
 
-recipes/static/admin/
+# Local History for Visual Studio Code
+.history/
+
+.mypy_cache
+
+# папки со статикой и медиа
+static/
+media/

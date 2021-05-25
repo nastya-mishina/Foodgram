@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load user_filters %}
+
+{% block title %}Рецепты | {{ author.get_full_name|default:author.username }}{% endblock title %}
+{% block header_title %}{{ author.get_full_name|default:author.username }}{% endblock header_title %}
+
+{% block content %}
+
+{% if user.is_authenticated and author != user %}
+    <div class="author-subscribe" data-author="{{ author.pk }}">
+        <p style="padding: 0 0 2em 0;">
+            {% include 'include/button_subscribe.html' %}
+        </p>
+    </div>
+{% endif %}
+
+<div class="card-list">
+    {% for recipe in page_obj %}
+        {% include 'include/recipe_card.html' %}
+    {% endfor %}
+</div>
+
+{% if page_obj.has_other_pages %}
+    {% include 'include/paginator.html' with page=page_obj paginator=paginator%}
+{% endif %}
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'js/components/Favorites.js' %}"></script>
+    <script src="{% static 'js/components/Subscribe.js' %}"></script>
+    <script src="{% static 'js/components/AuthorRecipe.js' %}"></script>
+    <script src="{% static 'authorRecipe.js' %}"></script>
+{% endblock scripts %}

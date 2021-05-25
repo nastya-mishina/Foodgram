@@ -1,9 +1,0 @@
-{% load user_filters %}
-
-{% if user.is_authenticated %}
-    {% if author|follow:user %}
-            <button class="button button_style_light-blue button_size_auto" name="subscribe"><span class="icon-check button__icon"></span>Отписаться от автора </button>
-    {% else %}
-            <button class="button button_style_light-blue button_size_auto" name="subscribe" data-out>Подписаться на автора</button>
-    {% endif %}
-{% endif %}
