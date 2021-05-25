@@ -9,10 +9,10 @@ class Header {
 
     plusCounter  ()  {
         this.counterId = ++this.counterId;
-        this.counterId.textContent = this.counterId;
+        this.counterId.text = this.counterId;
     }
     minusCounter ()  {
         this.counterId = --this.counterId;
-        this.counterId.textContent = this.counterId;
+        this.counterId.text = this.counterId;
     }
 }
