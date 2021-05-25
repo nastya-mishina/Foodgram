@@ -10,9 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 AUTH_USER_MODEL = "users.User"
 
-SECRET_KEY = (
-    "django-insecure-p)h1ch%k&i(p$o)rc65=6o(*xm7s!_9ly3&x-xnl7)4ooa)as0"
-)
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = False
 
